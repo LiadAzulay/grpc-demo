@@ -1,0 +1,30 @@
+// specifying syntax version
+syntax = "proto3";
+
+
+package todoPackage;
+
+
+// Creating Service (The SCHEMA)
+service Todo {
+    // Creating TODO methods
+    rpc createTodo(TodoItem) returns (TodoItem);
+    // voidNoParam == VOID, (there's no void in protobuf)
+    rpc readTodos(voidNoParam) returns (TodoItems);
+    rpc readTodosStream(voidNoParam) returns (stream TodoItem);
+
+}
+
+// Dummy message
+message voidNoParam {}
+
+// (The SCHEMA)
+message TodoItem {
+    int32 id = 1;
+    string text = 2;
+}
+// (The SCHEMA)
+message TodoItems {
+    // Array
+    repeated TodoItem items = 1;
+}
